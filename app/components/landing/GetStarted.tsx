@@ -1,21 +1,36 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ExampleTemplate } from '../ExampleTemplate';
 import FileUpload from '../FileUpload';
+import { BackgroundAnimation } from '../animations/BackgroundAnimation';
 
 export const GetStarted: React.FC = ({handleFileUpload}) => {
 
   return (
-    <div className="bg-gray-50 py-24 min-h-screen flex items-center" id="get-started">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="lg:text-center mb-16">
-          <h2 className="text-lg font-semibold text-blue-600">Get Started</h2>
-          <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
-            Create your seating plan now
+    <div className="relative min-h-screen bg-gradient-to-b from-gray-50 to-white" id="get-started">
+      <BackgroundAnimation />
+      
+      <div className="relative z-10 container mx-auto px-4 py-24">
+      <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto text-center mb-16"
+        >
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-50 mb-4">
+            <span className="px-3 py-0.5 text-sm font-semibold text-primary-700 rounded-full bg-white shadow-sm">
+              Get Started
+            </span>
+          </span>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+            Transform Your Exam Management
+            <span className="block text-primary-600">in Minutes</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            Simply upload your student data and let our intelligent system create the perfect seating arrangement.
           </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Begin by uploading student data.
-          </p>
-        </div>
+        </motion.div>
 
         <div className="max-w-xl mx-auto space-y-8">
           <FileUpload onUpload={handleFileUpload} />
