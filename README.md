@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Seat Plan Generator**
 
-## Getting Started
+This project is a web application built with **Next.js**, **TypeScript**, **Tailwind CSS**, and **Shadcn UI** to streamline seat allocation for classrooms and exams. Users can upload student information via an Excel file, visually generate a seat plan, and download it as a PDF or Excel file.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 **Features**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Excel File Upload**: Seamlessly upload student data for seat allocation.  
+- **Visual Seat Plan**: Automatically generate a visual layout of the seating arrangement.  
+- **Download Options**: Export the seat plan as **PDF** or **Excel**.  
+- **Fully Responsive**: Optimized for all devices and screen sizes.  
+- **Next.js Framework**: Leverages server-side rendering and static site generation.  
+- **TypeScript for Safety**: Ensures type safety and improves code maintainability.  
+- **Tailwind CSS Styling**: Utility-first styling for fast and customizable design.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ **Tech Stack**
 
-## Learn More
+- **Framework**: [Next.js](https://nextjs.org/)  
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)  
+- **UI Components**: [Shadcn UI](https://ui.shadcn.com/)  
+- **Language**: [TypeScript](https://www.typescriptlang.org/)  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🖼️ **Screenshots**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Here are some screenshots of the project:
 
-## Deploy on Vercel
+##### Hero Section  
+![Hero Section](/public/images/herosection.png)  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Featres Section  
+![Featres Section](/public/images/featuresSection.png)  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### How It Works  
+![How It Works Section](/public/images/howItWorksSection.png)
+
+#### Get Started  
+![Get Started Section](/public/images/uploadfilesection.png)
+
+#### Landing page  
+![Get Started Section](/public/images/landingPage.png)
+
+---
+
+## 🌟 **Acknowledgements**
+
+- [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/), and [Shadcn UI](https://ui.shadcn.com/) for their excellent tools.  
+- The entire open-source community for inspiration and support.
+
+Feel free to contribute or share your thoughts about the project!

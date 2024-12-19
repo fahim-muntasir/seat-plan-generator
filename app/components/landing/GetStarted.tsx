@@ -7,7 +7,7 @@ import { BackgroundAnimation } from '../animations/BackgroundAnimation';
 export const GetStarted: React.FC = ({handleFileUpload}) => {
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-gray-50 to-white" id="get-started">
+    <div className="relative min-h-screen bg-gradient-to-t from-white to-primary-50/30" id="get-started">
       <BackgroundAnimation />
       
       <div className="relative z-10 container mx-auto px-4 py-24">
