@@ -17,15 +17,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import SortableItem from "./Item";
+import { ProcessedData } from "@/types";
 
 interface SeatPlanDisplayProps {
-  seatPlan: any;
+  seatPlan: ProcessedData;
   roomConfigs: Array<{ name: string; columns: number; capacity: number }>;
   onConfigChange: (
     index: number,
     newConfig: { name: string; columns: number; capacity: number }
   ) => void;
-  onChange: (newSeatPlan: any) => void;
+  onChange: (newSeatPlan: ProcessedData) => void;
   onAddRoom: () => void;
   onRemoveRoom: (index: number) => void;
 }
@@ -46,6 +47,11 @@ export default function SeatPlanDisplay({
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  function hasId(obj: unknown): obj is { id: string } {
+    return typeof obj === 'object' && obj !== null && 'id' in obj && typeof obj.id === 'string';
+  }
+  
 
   const handleConfigChange = (
     index: number,
@@ -71,8 +77,13 @@ export default function SeatPlanDisplay({
     setEditingCell(null);
   };
 
-  const onDragEnd = ({ active, over }: { active: any; over: any }) => {
-    if (!over || active.id === over.id) return;
+  const onDragEnd = ({ active, over }: { active: unknown; over: unknown }) => {
+    console.log("active==", active);
+    console.log("over==", over);
+
+    if (!hasId(active) || !hasId(over)) return;
+
+    if (active.id === over.id) return;
 
     const [activeRoom, activeRow, activeCol] = active.id.split("-").map(Number);
     const [overRoom, overRow, overCol] = over.id.split("-").map(Number);

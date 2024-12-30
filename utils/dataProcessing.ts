@@ -1,7 +1,9 @@
+import { ProcessedData, Student, RoomConfig } from "@/types";
 // interface Student {
 //   department: string
 //   rollNumber: string
 // }
+
 
 // interface RoomConfig {
 //   name: string
@@ -60,24 +62,12 @@
 
 // ======================================
 
-interface Student {
-  department: string;
-  rollNumber: string;
-}
-
-interface RoomConfig {
-  name: string;
-  columns: number;
-  capacity: number;
-}
-
-export function processExcelData(data: Student[], roomConfigs: RoomConfig[]) {
+export function processExcelData(data: Student[], roomConfigs: RoomConfig[]): ProcessedData {
   console.log("data==", data);
 
   const departments = [...new Set(data.map((student) => student.department))];
   console.log("departments==", departments);
 
-  // Group students by department
   const studentsPerDepartment = departments.map((dept) =>
     data.filter((student) => student.department === dept)
   );
@@ -91,44 +81,31 @@ export function processExcelData(data: Student[], roomConfigs: RoomConfig[]) {
     const room: string[][] = [];
     const rowsInRoom = Math.ceil(roomConfig.capacity / roomConfig.columns);
 
-    // Initialize empty layout
     for (let row = 0; row < rowsInRoom; row++) {
       room.push(new Array(roomConfig.columns).fill(""));
     }
 
     const placedStudents: Set<string> = new Set();
 
-    // Function to check if a seat is valid
-    const isValidSeat = (
-      row: number,
-      col: number,
-      department: string
-    ): boolean => {
+    const isValidSeat = (row: number, col: number, department: string): boolean => {
       const adjacentSeats = [
-        room[row - 1]?.[col], // Above
-        room[row + 1]?.[col], // Below
-        room[row]?.[col - 1], // Left
-        room[row]?.[col + 1], // Right
+        room[row - 1]?.[col],
+        room[row + 1]?.[col],
+        room[row]?.[col - 1],
+        room[row]?.[col + 1],
       ];
-
-      return !adjacentSeats.some((seat) =>
-        seat?.startsWith(department)
-      );
+      return !adjacentSeats.some((seat) => seat?.startsWith(department));
     };
 
-    // Fill seats
     for (let row = 0; row < rowsInRoom; row++) {
       for (let col = 0; col < roomConfig.columns; col++) {
         if (studentIndex >= totalStudents) break;
 
-        // Find a valid student for this seat
         let foundStudent = false;
 
         for (let deptIndex = 0; deptIndex < departments.length; deptIndex++) {
-          const currentDept = departments[deptIndex];
           const studentsInDept = studentsPerDepartment[deptIndex];
 
-          // Find next available student in this department
           for (const student of studentsInDept) {
             const studentKey = `${student.department} ${student.rollNumber}`;
             if (
@@ -137,6 +114,7 @@ export function processExcelData(data: Student[], roomConfigs: RoomConfig[]) {
             ) {
               room[row][col] = studentKey;
               placedStudents.add(studentKey);
+              studentIndex++; // Increment here
               foundStudent = true;
               break;
             }
@@ -154,6 +132,7 @@ export function processExcelData(data: Student[], roomConfigs: RoomConfig[]) {
 
   return { rooms, originalData: data };
 }
+
 
 // ======================================
 

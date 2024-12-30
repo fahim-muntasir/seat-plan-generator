@@ -1,31 +1,31 @@
 "use client";
 
 import { useState } from "react";
-import FileUpload from "./components/FileUpload";
 import SeatPlanDisplay from "./components/SeatPlanDisplay";
 import { processExcelData } from "../utils/dataProcessing";
 import { Button } from "@/components/ui/button";
 import { downloadPDF, downloadExcel } from "../utils/download";
-import { School } from "lucide-react";
-import { ExampleTemplate } from "./components/ExampleTemplate";
 import { Hero } from './components/landing/Hero';
 import { Features } from './components/landing/Features';
 import { HowItWorks } from './components/landing/HowItWorks';
 import { GetStarted } from "./components/landing/GetStarted";
+import { ProcessedData, RoomConfig, Student } from "@/types";
 
 export default function ExamSeatPlanManager() {
-  const [seatPlan, setSeatPlan] = useState(null);
-  const [roomConfigs, setRoomConfigs] = useState([]);
+  const [seatPlan, setSeatPlan] = useState<ProcessedData | null>(null);
+  const [roomConfigs, setRoomConfigs] = useState<RoomConfig[]>([]);
 
-  const handleFileUpload = (data) => {
+  const handleFileUpload = (data: Student[]) => {
     const initialConfig = { name: "Room 1", columns: 4, capacity: 40 };
     const processedData = processExcelData(data, [initialConfig]);
+
     console.log("processData==", processedData);
     setSeatPlan(processedData);
     setRoomConfigs([initialConfig]);
   };
 
-  const handleRoomConfigChange = (index, newConfig) => {
+  const handleRoomConfigChange = (index: number, newConfig: RoomConfig) => {
+    console.log("newConfig==", newConfig);
     const updatedConfigs = [...roomConfigs];
     updatedConfigs[index] = newConfig;
     setRoomConfigs(updatedConfigs);
@@ -54,7 +54,7 @@ export default function ExamSeatPlanManager() {
     }
   };
 
-  const handleRemoveRoom = (index) => {
+  const handleRemoveRoom = (index: number) => {
     const updatedConfigs = roomConfigs.filter((_, i) => i !== index);
     setRoomConfigs(updatedConfigs);
     if (seatPlan) {
@@ -66,7 +66,7 @@ export default function ExamSeatPlanManager() {
     }
   };
 
-  const handleSeatPlanChange = (newSeatPlan) => {
+  const handleSeatPlanChange = (newSeatPlan: ProcessedData) => {
     setSeatPlan(newSeatPlan);
   };
 

@@ -3,8 +3,13 @@ import { motion } from 'framer-motion';
 import { ExampleTemplate } from '../ExampleTemplate';
 import FileUpload from '../FileUpload';
 import { BackgroundAnimation } from '../animations/BackgroundAnimation';
+import { Student } from '@/types';
 
-export const GetStarted: React.FC = ({handleFileUpload}) => {
+type GetStartedProps = {
+  handleFileUpload: (data: Student[]) => void;
+}
+
+export const GetStarted: React.FC<GetStartedProps> = ({handleFileUpload}) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-t from-white to-primary-50/30" id="get-started">
